@@ -3,3 +3,4 @@
 conda install -c bioconda hisat2
 
 ### build hisat2 index
+hisat2-build /Users/sung/Desktop/ref/mm10/mm10.fa mm10
