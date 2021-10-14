@@ -1,0 +1,5 @@
+### install hisat2
+### in terminal
+conda install -c bioconda hisat2
+
+### build hisat2 index
