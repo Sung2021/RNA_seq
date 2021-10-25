@@ -17,6 +17,7 @@ for input in ko1 ko2 ko3 wt1 wt2 wt3 ; do java -jar ~/Desktop/software/Trimmomat
 path=~/Desktop/Sung_work/fastq/19092_50_01
 
 cd $path/star_out
+ulimit -n 1000
 for i in wt1 wt2 wt3 ko1 ko2 ko3;
 do
  sampleid="${i}"
