@@ -99,6 +99,39 @@ raw.counts.filtered <- read.csv('rds/RNA_seq/NIK_t/RNA_seq_NIK.import.feature.ma
 count.mtx <- raw.counts.filtered
 count.mtx %>% head()
 
+## input data : info sheet
+info <- data.frame(matrix(nrow = ncol(count.mtx), ncol = 3))
+colnames(info) <- c('sample', 'cell_type','condition')
+info$sample <- substr(colnames(count.mtx),1,6)
+info$cell_type <- substr(info$sample,5,5)
+info$condition <- substr(info$sample,1,5)
+info
+
+###############################################
+######## total dds : DESeq ####################
+dds <- DESeqDataSetFromMatrix(count.mtx, info, ~condition)
+dds <- DESeq(dds)
+
+### vst for PCA ### 
+vsd <- vst(dds,blind=TRUE)
+plotPCA(vsd, intgroup="condition")
+
+# to remove the dependence of the variance on the mean
+#plotPCA(vsd, intgroup="mutation")
+pcaplot <- plotPCA(vsd, intgroup="condition", return=T)  #using the DESEQ2 plotPCA fxn we can
+### drawing plot
+theme <- theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+               panel.background = element_blank(), 
+               axis.line = element_line(colour = "black"))
+ggplot(pcaplot, aes(PC1,PC2, shape=condition)) + geom_point(size=3, alpha=0.8) + 
+  theme + xlab('PC1:62% variance') + ylab('PC2:24% variance')
+
+
+
+
+
+
+
 
 
 ###### gene range information from TxDb database #####
@@ -158,7 +191,8 @@ gene.exp.func <- function(gene,input.data=fpkm){
     df <- input.data[gene,] %>% melt() %>% data.frame()
     df$condition <- substr(df$variable,1,5)
     df2 <- df %>% group_by(condition) %>% summarize(avg=mean(value), sd=sd(value))
-    p <- ggplot(df2, aes(condition,avg)) + geom_col()+ geom_errorbar(aes(ymin=avg-sd, ymax=avg+sd))
+    p <- ggplot(df2, aes(condition,avg)) + geom_col()+ geom_errorbar(aes(ymin=avg-sd, ymax=avg+sd)) + 
+      ylab(gene) + theme_classic()
     print(p)
   }
   else{
@@ -222,8 +256,9 @@ for(i in c('ctr_t','nik_s','nik_t','ikk_t')){
 df.avg %>% head()
 fpkm.norm <- df.avg
 
-p1 <- gene.exp.func('Tcf7')
-p2 <- gene.exp.func('Tcf7', input.data = fpkm.norm)
+gene <- 'Cxcr5'
+p1 <- gene.exp.func(gene)
+p2 <- gene.exp.func(gene, input.data = fpkm.norm)
 cowplot::plot_grid(p1,p2)
 
 
@@ -231,3 +266,5 @@ write.csv(fpkm.norm, 'rds/RNA_seq/NIK_t/RNA_seq_NIK.t_only.na_filtered.norm.fpkm
 fpkm.norm <- read.csv('rds/RNA_seq/NIK_t/RNA_seq_NIK.t_only.na_filtered.norm.fpkm.csv',
                  row.names = 1)
 fpkm.norm %>% head()
+
+fpkm.norm['Tcf7',]
