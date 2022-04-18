@@ -18,7 +18,7 @@ dim(res)
 res <- data.frame(res)
 res %>% write.csv('RNA_seq/Iowa_Tcm Tem irradiation/dds.res.7246.genes.tcm_irr.tem_irr.csv')
 
-
+## filter DEG based on several criteria
 is.na(res$padj) %>% table()
 res.filtered <- res[!(is.na(res$padj)),]
 dim(res.filtered)
