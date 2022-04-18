@@ -29,7 +29,7 @@ res.filtered %>% dim()
 res.filtered %>% rownames()
 
 ## volcano plot
-res.filtered %>% ggplot(aes(log2FoldChange, -log10(padj))) + geom_point()+
+res.filtered %>% ggplot(aes(log2FoldChange, -log10(padj))) + geom_point(alpha=0.5)+
   geom_vline(xintercept = c(-log2(2), log2(2)), color='red') +
-  geom_hline(yintercept = 0.0, color='blue')
+  geom_hline(yintercept = -log10(0.05), color='blue')
 
