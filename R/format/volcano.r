@@ -29,3 +29,21 @@ res.threshold.0.5 %>% ggplot(aes(log2FoldChange, -log10(padj),
   geom_hline(yintercept = -log10(0.05), color='blue') +
   geom_text(hjust = -0.05, nudge_x = 0.05) +
   scale_y_log10() + ylim(c(1,5)) + xlim(c(-5,5))
+
+
+genes <- c('Klrg1','Cx3cr1','Gzmb','Gzma','Fasl',
+           'Cd226','Prdm1','Itga1','Ifng','Tbx21',
+           'Cd8a','Nkg7','Id2','Il2ra','Themis', 
+           'Ly6c2','Stat4','Cd28','Klf3','Malat1')
+
+genes <- c('Scd1','Cd74','Id3','Sell', 'Icosl',
+           'Cxcr5', 'Irf8', 'Id2')
+res.threshold.0.5$gene <- ''
+res.threshold.0.5[rownames(res.threshold.0.5) %in% genes,]$gene <- rownames(res.threshold.0.5[rownames(res.threshold.0.5) %in% genes,])
+
+res.threshold.0.5 %>% ggplot(aes(log2FoldChange, -log10(padj), 
+                                 label=gene)) +
+  geom_point(size=1, alpha=0.5) + theme_classic() +
+  geom_vline(xintercept = c(-1,1), color='red') +
+  geom_hline(yintercept = -log10(0.05), color='blue') +
+  geom_text(hjust = -0.05, nudge_x = 0.05) + ylim(c(1,10)) + xlim(c(-5,5))
