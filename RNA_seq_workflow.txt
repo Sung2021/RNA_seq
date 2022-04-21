@@ -7,7 +7,9 @@
 6. fpkm threshold setup
 7. fpkm threshold filtering
 8. DEG by DESeq
-9. DEGs confirmation by known markers
-   9.1. Volcanoplot
-   9.2. etc
-10. make reports for this
+9. DEG filtering by log2FC > 1 & FDR < 0.05
+10. DEG filtering if either condition fpkm over threshold  
+11. DEGs confirmation by known markers
+   11.1. Volcanoplot
+   11.2. etc
+12. make reports for this
