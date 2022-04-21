@@ -1,0 +1,15 @@
+genes <- c('Stat4', 'Cd28','Fasl','Sell','Il2ra','Dusp2','Cd40',
+           'Il12a', 'S100a10','Kdm1a', 'Jun','Id3', 'Il12rb2',
+           'Cd8a', 'Klrg1', 'Cd4','Ltbr', 'Pou2f2', 'Ifitm2','Ifitm3',
+           'Irf8', 'Cx3cr1','Ccr5', 'Izumo1r', 'Ldlr','Cxcr5', 'Prdm1', 'Icosl',
+           'Ifng','Il9r','Kdm6b', 'Ccl4','Id2', 'Fos', 'Irf4', 'Trim13', 'Tmtc4', 'Gzmb', 
+           'Myc', 'Hdac7', 'Nr4a1', 'Bcl6','Btla', 'Cd200','Cd74', 'Scd2',
+           'Scd1')
+
+## Tem enriched genes
+genes <- c('Klrg1','Cx3cr1','Gzmb','Gzma','Fasl',
+           'Cd226','Prdm1','Itga1','Ifng','Tbx21',
+           'Cd8a','Nkg7','Id2','Il2ra','Themis', 
+           'Ly6c2','Stat4','Cd28','Klf3','Malat1')
+           
+           
