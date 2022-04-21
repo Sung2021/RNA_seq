@@ -1,5 +1,6 @@
 
-
+## count mtx 
+## if you removed some conditions in the pool for the anlaysis, you are sure to remove them from the count.mtx too.
 ############################################################
 
 
