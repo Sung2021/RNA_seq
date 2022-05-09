@@ -15,13 +15,6 @@ res %>% ggplot(aes(log2FoldChange, -log10(padj),
 
 
 
-
-
-
-
-
-
-
 res.threshold.0.5 %>% ggplot(aes(log2FoldChange, -log10(padj))) +
   geom_point(size=1, alpha=0.5) + theme_classic() +
   geom_vline(xintercept = c(-1,1), color='red') +
@@ -87,4 +80,9 @@ res.df %>% ggplot(aes(log2FoldChange, -log10(padj),
   geom_vline(xintercept = c(-1,1), color='red') +
   geom_hline(yintercept = -log10(0.05), color='blue') +
   geom_text(hjust = -0.05, nudge_x = 0.05)
+
+
+
+cowplot::plot_grid(p1,p3,p2, ncol = 3)
+
 
