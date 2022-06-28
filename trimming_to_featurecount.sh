@@ -29,7 +29,7 @@ gzip -d $path/trimmed/${sampleid}.R2.paired.fastq.gz
 --readFilesIn $path/trimmed/${sampleid}.R1.paired.fastq $path/trimmed/${sampleid}.R2.paired.fastq   \
 --genomeDir ~/Desktop/ref/mm10/star_index \
 --outFileNamePrefix $path/star_out/${sampleid} \
---outSAMtype BAM SortedByCoordinate 
+--outSAMtype BAM SortedByCoordinate ;
 done 
 
 
